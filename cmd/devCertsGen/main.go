@@ -55,10 +55,10 @@ func main() {
 	}
 
 	//we don'T write root key to disk. if we need new certificates we renew them all at once...
-	err = ioutil.WriteFile(filepath.Join(newpath, "root.key"), rootKey, 0644)
-	if err != nil {
-		panic(err)
-	}
+	//err = ioutil.WriteFile(filepath.Join(newpath, "root.key"), rootKey, 0644)
+	//if err != nil {
+	//	panic(err)
+	//}
 
 	rootPubCert, err := devCerts.PemToX509Cert(rootCert)
 	if err != nil {
