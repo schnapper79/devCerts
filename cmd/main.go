@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto"
 	"crypto/x509/pkix"
 	"flag"
 	"io/ioutil"
@@ -71,7 +72,7 @@ func main() {
 
 	for i := 0; i < count; i++ {
 		//make a new HostCert and sign it................................................................
-		pubPem, privPem, err := devCerts.GetNewCert(rootPubCert, rootPrivKey, "ec-521", pkix.Name{CommonName: "testClient" + strconv.Itoa(i)}, time.Now(), time.Now().AddDate(0, 0, 1), false, []net.IP{}, []string{"localhost"}, []string{}, []*url.URL{})
+		pubPem, privPem, err := devCerts.GetNewCert(rootPubCert, rootPrivKey.(crypto.Signer), "ec-521", pkix.Name{CommonName: "testClient" + strconv.Itoa(i)}, time.Now(), time.Now().AddDate(0, 0, 1), false, []net.IP{}, []string{"localhost"}, []string{}, []*url.URL{})
 		if err != nil {
 			panic(err)
 		}
